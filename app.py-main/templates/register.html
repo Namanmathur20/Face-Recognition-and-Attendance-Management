@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register User</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 400px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00c6ff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #0072ff;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Register New User</h1>
+    <form action="/register" method="POST" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" required>
+      <label for="image">Image:</label>
+      <input type="file" name="image" id="image" required>
+      <button type="submit">Register</button>
+    </form>
+    <a href="/">← Back to Home</a>
+  </div>
+</body>
+</html>

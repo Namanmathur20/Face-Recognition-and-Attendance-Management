@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | Attendance System</title>
+  <style>
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(0,0,0,0.3);
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      z-index: -1;
+      background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+      background-size: 400%;
+      border-radius: 50px;
+      opacity: 0;
+      transition: 0.5s;
+      animation: animate 20s linear infinite;
+    }
+    
+    .btn:hover::before {
+      opacity: 1;
+      filter: blur(5px);
+    }
+    
+    @keyframes animate {
+      0% { background-position: 0 0; }
+      50% { background-position: 400% 0; }
+      100% { background-position: 0 0; }
+    }
+  </style>
+  <style>
+    body {
+        
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #e0e0e0;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Glassmorphism Buttons */
+    .btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 15px 30px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    /* Glassmorphism Footer */
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9rem;
+      color: #ddd;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Glassmorphism Flash Messages */
+    .flash-messages {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      color: #fff;
+      font-weight: 500;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <h1>Welcome to Smart Attendance System</h1>
+  <p>Seamlessly register users, mark attendance, and view records</p>
+
+  <div class="button-container">
+    <a href="{{ url_for('register') }}" class="btn">➕ Register Person</a>
+    <a href="{{ url_for('attendance') }}" class="btn">📷 Mark Attendance</a>
+    <a href="{{ url_for('records') }}" class="btn">📊 View Records</a>
+  </div>
+
+  <footer>© 2025 Face Recognition Attendance System</footer>
+
+
+  <script>
+    document.body.style.transition = "background 1s ease";
+    
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      document.body.style.background = "linear-gradient(135deg, #1d2b64, #f8cdda)"; // Morning
+    } else if (hour < 18) {
+      document.body.style.background = "linear-gradient(135deg, #4b6cb7, #182848)"; // Afternoon  
+    } else {
+      document.body.style.background = "linear-gradient(135deg, #0f2027, #203a43)"; // Evening
+    }
+  </script>
+
+
+</body>
+</html>

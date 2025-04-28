@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+  <script>confetti({particleCount: 100, spread: 70})</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance Marked</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Attendance Marked</h1>
+    <p>Attendance marked for <strong>{{ names }}</strong> at <strong>{{ time }}</strong>.</p>
+    <a href="/">← Back to Home</a>
+  </div>
+</body>
+</html>
+<!-- Add this where you want messages to appear -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div>
+    {% for category, message in messages %}
+      <p><b>{{ category|upper }}:</b> {{ message }}</p>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}

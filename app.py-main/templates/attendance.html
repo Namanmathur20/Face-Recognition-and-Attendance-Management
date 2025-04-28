@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mark Attendance</title>
+  <style>
+    body {
+        
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00c6ff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #0072ff;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mark Attendance</h1>
+    <form action="/attendance" method="POST">
+      <button type="submit">Start Face Recognition</button>
+    </form>
+    <a href="/">← Back to Home</a>
+  </div>
+  <div id="live-clock" style="font-size: 1.5rem; font-weight: bold; margin: 5px 0;">
+  ⏰ Loading...
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', { hour12: true });
+    document.getElementById('live-clock').innerHTML = `⏰ ${timeStr}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock(); // Initialize immediately
+</script>
+</body>
+</html>

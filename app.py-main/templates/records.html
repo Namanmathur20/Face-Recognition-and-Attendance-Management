@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance Records</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2b64, #f8cdda);
+      padding: 20px 0 40px;
+      color: white;
+      min-height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .user-stats {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 15px;
+      flex: 1;
+      min-width: 250px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    th {
+      background-color: rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+    }
+    tr:hover {
+      background-color: rgba(255,255,255,0.15);
+    }
+    .back-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      margin-top: 20px;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .highlight {
+      background: rgba(255,255,255,0.2);
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      th, td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Attendance Records</h1>
+    
+    <div class="stats-container">
+      {% for user in user_stats %}
+      <div class="user-stats">
+        <h3>{{ user.name }}</h3>
+        <p>Total Days Present: {{ user.days_present }}</p>
+        
+        <p>First Record: {{ user.first_date.strftime('%Y-%m-%d') if user.first_date else 'N/A' }}</p>
+        <p>Last Record: {{ user.last_date.strftime('%Y-%m-%d') if user.last_date else 'N/A' }}</p>
+        <p>Attendance Rate: {{ user.attendance_rate }}%</p>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in records %}
+        <tr>
+          <td>{{ record.id }}</td>
+          <td>{{ record.user_id }}</td>
+          <td>{{ record.name }}</td>
+          <td>{{ record.timestamp.strftime('%Y-%m-%d') }}</td>
+          <td>{{ record.timestamp.strftime('%H:%M:%S') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    <a href="/" class="back-btn">← Back to Home</a>
+  </div>
+</body>
+</html>
